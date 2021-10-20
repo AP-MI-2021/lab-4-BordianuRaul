@@ -11,6 +11,62 @@ def citire():
     return result_list
 
 
+def get_oglindit(n):
+    """
+    Determina oglinditul unui numar
+    :param n: numarul
+    :return: oglinditul lui n
+    """
+
+    oglindit = 0
+    while n:
+        oglindit = oglindit * 10 + n % 10
+        n //= 10
+
+    return oglindit
+
+
+def is_dividing(n, lista):
+    """
+    Verifica daca n se divide cu toate elementele din lista
+    :param n:
+    :param lista:
+    :return: True daca sse divide, False altfel
+    """
+
+    for divizor in lista:
+        if n % divizor != 0:
+            return False
+    return True
+
+
+def get_oglindite_daca_div(lista_1, lista_2, lista_3):
+
+    """
+    Determina toate elementele oglindite din primele 2 liste daca se divid cu toate elementele din a 3 a lista
+    :param lista_1:
+    :param lista_2:
+    :param lista_3:
+    :return: lista cu elemenetele oglindite
+    """
+
+    oglindit_list_1 = []
+    oglindit_list_2 = []
+
+    for element in range (0,len(lista_1)):
+        if is_dividing(element, lista_3):
+            oglindit = get_oglindit(element)
+            lista_1[element] = oglindit
+
+    for element in range(0, len(lista_2)):
+        if is_dividing(element, lista_3):
+            oglindit = get_oglindit(element)
+            lista_2 = oglindit
+
+    return lista_1, lista_2
+
+
+
 def get_nr_evens(list):
     """
     Determina numarul de elemente pare dintr-o lista
@@ -172,6 +228,9 @@ def main():
             2.Verifica daca listele au acelasi numar de elemente pare
             3.Determina intersectia a doua liste
             4.Afiseaz toate palindroamele obținute prin concatenarea elementelor de pe aceleași poziții în cele două liste.
+            5.Citiți o a treia listă și afișați listele obținute prin înlocuirea în cele două liste citite la punctul 1 a
+tuturor elementelor cu oglinditul lor dacă îndeplinesc următoarea regulă: elementele sunt divizibile
+cu toate elementele din a treia lista. Dacă nu îndeplinesc regula, păstrați elementul așa cum e.
             x.Iesire din program
         """)
 
@@ -198,6 +257,10 @@ def main():
         elif optiune == '4':
 
             print(get_all_palindroms_from_kat(lista_1, lista_2))
+
+        elif optiune == '5':
+            lista_3 = citire()
+            print(get_oglindite_daca_div(lista_1, lista_2, lista_3))
 
         elif optiune == 'x':
             break
