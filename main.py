@@ -20,7 +20,7 @@ def get_oglindit(n):
 
     oglindit = 0
     while n:
-        oglindit = oglindit * 10 + n % 10
+        oglindit = oglindit * 10 + (n % 10)
         n //= 10
 
     return oglindit
@@ -61,7 +61,7 @@ def get_oglindite_daca_div(lista_1, lista_2, lista_3):
     for element in range(0, len(lista_2)):
         if is_dividing(element, lista_3):
             oglindit = get_oglindit(element)
-            lista_2 = oglindit
+            lista_2[element] = oglindit
 
     return lista_1, lista_2
 
